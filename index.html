@@ -85,7 +85,7 @@
                   Login
                </button>
                <button class="header-actions__btn header-actions__btn_second btn btn-click popup-open"
-                  data-popup="popup-sign">
+                  data-popup="popup-sign-up">
                   Sign Up
                </button>
             </div>
@@ -116,11 +116,95 @@
 				<button class="popup-item__close btn-click" type="button"><span></span></button>
 			</div>
 			<div class="popup-item__content">
-				<div class="popup-item__field popup-field field">
-					<form class="field__form" action="#">
-						<div class="field__item">
-							<input class="field__input" type="text" placeholder="e-mail">
+				<div class="popup-item__field popup-field">
+					<form class="popup-field__form" method="get" action="#">
+						<div class="popup-item__label">
+							E-mail
 						</div>
+						<div class="popup-field__item field__item">
+							<input class="popup-field__input" required type="email" placeholder="E-mail">
+						</div>
+						<div class="popup-item__label">
+							Password
+						</div>
+						<div class="popup-field__item field__item popup-field__password">
+							<input class="popup-field__input popup-field__password-input" minlength="8" maxlength="16" required
+								type="password" placeholder="Password">
+							<button class="popup-field__password-show" type="button">
+								<img src="img/icon/password.svg" alt="show-password">
+							</button>
+						</div>
+						<a class="popup-item__text popup-item__link" href="#">
+							Remind password?
+						</a>
+						<button class="popup-item__btn btn btn-click" type="submit">
+							Login
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup-wrapper__item popup-item popup-sign-up">
+		<div class="popup-item__body">
+			<div class="popup-item__top">
+				<div class="popup-item__title">
+					Sign Up
+				</div>
+				<button class="popup-item__close btn-click" type="button"><span></span></button>
+			</div>
+			<div class="popup-item__content">
+				<div class="popup-item__field popup-field">
+					<form class="popup-field__form" method="get" action="#">
+						<div class="popup-item__label">
+							E-mail
+						</div>
+						<div class="popup-field__item field__item">
+							<input class="popup-field__input" required type="email" placeholder="E-mail">
+						</div>
+						<div class="popup-item__label">
+							Gender
+						</div>
+						<div class="popup-field__item popup-item__individual popup-individual">
+							<div class="popup-individual__btn">
+								<input class="popup-individual__radio popup-individual__male" id="popup-individual__male"
+									name="popup-individual" value="male" type="radio" required>
+								<label for="popup-individual__male" class="popup-individual__label">
+									Male
+								</label>
+							</div>
+							<div class="popup-individual__btn">
+								<input class="popup-individual__radio popup-individual__female" id="popup-individual__female"
+									name="popup-individual" value="female" type="radio" required>
+								<label for="popup-individual__female" class="popup-individual__label">
+									Female
+								</label>
+							</div>
+						</div>
+						<div class="popup-item__label">
+							Password
+						</div>
+						<div class="popup-field__item field__item popup-field__password">
+							<input class="popup-field__input popup-field__password-input" minlength="8" maxlength="16" required
+								type="password" placeholder="Password">
+							<button class="popup-field__password-show" type="button">
+								<img src="img/icon/password.svg" alt="show-password">
+							</button>
+						</div>
+						<div class="popup-item__label">
+							Password
+						</div>
+						<div class="popup-field__item field__item popup-field__password">
+							<input class="popup-field__input popup-field__password-input" minlength="8" maxlength="16" required
+								type="password" placeholder="Password">
+							<button class="popup-field__password-show" type="button">
+								<img src="img/icon/password.svg" alt="show-password">
+							</button>
+						</div>
+						<p class="popup-item__text">
+							By clicking the "Register" button,
+							you agree to the privacy <a class="popup-item__link" href="#">policy document</a>
+						</p>
 						<button class="popup-item__btn btn btn-click" type="submit">
 							Login
 						</button>

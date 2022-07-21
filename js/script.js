@@ -144,7 +144,7 @@
 }
 dynamicAdaptive(); // ДИНАМИЧЕСКИЙ АДАПТИВ */
 
-/* function scrollHeader() {
+function scrollHeader() {
 	const header = document.querySelector('.header');
 
 	const callback = function (entries, observer) {
@@ -158,7 +158,7 @@ dynamicAdaptive(); // ДИНАМИЧЕСКИЙ АДАПТИВ */
 	const headerObserver = new IntersectionObserver(callback);
 	headerObserver.observe(header);
 }
-scrollHeader(); // ДОБАВЛЕНИЕ ХЕДЕРУ КЛАСС ПРИ СКРОЛЛЕ */
+scrollHeader(); // ДОБАВЛЕНИЕ ХЕДЕРУ КЛАСС ПРИ СКРОЛЛЕ
 
 /* new Swiper(".swiper", {
 	slidesPerView: 1,
@@ -471,3 +471,24 @@ function actionsHeader() {
 
 }
 actionsHeader()
+
+function userPasswordShow() {
+	const passwordBody = document.querySelectorAll('.popup-field__password');
+
+	passwordBody.forEach(body => {
+		body.addEventListener("click", function (e) {
+			const elementTarget = e.target;
+
+			if (elementTarget.closest(".popup-field__password-show")) {
+				if (elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-input").getAttribute('type') === ('password')) {
+					elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-input").setAttribute('type', 'text');
+					elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-show").classList.add("_active");
+				} else {
+					elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-input").setAttribute('type', 'password');
+					elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-show").classList.remove("_active");
+				}
+			}
+		});
+	});
+}
+userPasswordShow()
