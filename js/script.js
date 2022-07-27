@@ -144,7 +144,7 @@
 }
 dynamicAdaptive(); // ДИНАМИЧЕСКИЙ АДАПТИВ */
 
-function scrollHeader() {
+/* function scrollHeader() {
 	const header = document.querySelector('.header');
 
 	const callback = function (entries, observer) {
@@ -158,7 +158,7 @@ function scrollHeader() {
 	const headerObserver = new IntersectionObserver(callback);
 	headerObserver.observe(header);
 }
-scrollHeader(); // ДОБАВЛЕНИЕ ХЕДЕРУ КЛАСС ПРИ СКРОЛЛЕ
+scrollHeader(); // ДОБАВЛЕНИЕ ХЕДЕРУ КЛАСС ПРИ СКРОЛЛЕ */
 
 /* new Swiper(".swiper", {
 	slidesPerView: 1,
@@ -232,21 +232,21 @@ quantity(); // СЧЁТЧИКИ */
 const spollersArray = document.querySelectorAll('[data-spollers]');
 
 if (spollersArray.length > 0) {
-	// Получение обычных слойлеров
+	// Получение обычных спойлеров
 	const spollersRegular = Array.from(spollersArray).filter(function (item, index, self) {
 		return !item.dataset.spollers.split(",")[0];
 	});
-	// Инициализация обычных слойлеров
+	// Инициализация обычных спойлеров
 	if (spollersRegular.length > 0) {
 		initSpollers(spollersRegular);
 	}
 
-	// Получение слойлеров с медиа запросами
+	// Получение спойлеров с медиа запросами
 	const spollersMedia = Array.from(spollersArray).filter(function (item, index, self) {
 		return item.dataset.spollers.split(",")[0];
 	});
 
-	// Инициализация слойлеров с медиа запросами
+	// Инициализация спойлеров с медиа запросами
 	if (spollersMedia.length > 0) {
 		const breakpointsArray = [];
 		spollersMedia.forEach(item => {
@@ -342,9 +342,74 @@ if (spollersArray.length > 0) {
 			_slideUp(spollerActiveTitle.nextElementSibling, 500);
 		}
 	}
+}
+
+let _slideUp = (target, duration = 500) => {
+	if (!target.classList.contains('_slide')) {
+		target.classList.add('_slide');
+		target.style.transitionProperty = 'height, margin, padding';
+		target.style.transitionDuration = duration + 'ms';
+		target.style.height = target.offsetHeight + 'px';
+		target.offsetHeight;
+		target.style.overflow = 'hidden';
+		target.style.height = 0;
+		target.style.paddingTop = 0;
+		target.style.paddingBottom = 0;
+		target.style.marginTop = 0;
+		target.style.marginBottom = 0;
+		window.setTimeout(() => {
+			target.hidden = true;
+			target.style.removeProperty('height');
+			target.style.removeProperty('padding-top');
+			target.style.removeProperty('padding-bottom');
+			target.style.removeProperty('margin-top');
+			target.style.removeProperty('margin-bottom');
+			target.style.removeProperty('overflow');
+			target.style.removeProperty('transition-duration');
+			target.style.removeProperty('transition-property');
+			target.classList.remove('_slide');
+		}, duration);
+	}
+}
+let _slideDown = (target, duration = 500) => {
+	if (!target.classList.contains('_slide')) {
+		target.classList.add('_slide');
+		if (target.hidden) {
+			target.hidden = false;
+		}
+		let height = target.offsetHeight;
+		target.style.overflow = 'hidden';
+		target.style.height = 0;
+		target.style.paddingTop = 0;
+		target.style.paddingBottom = 0;
+		target.style.marginTop = 0;
+		target.style.marginBottom = 0;
+		target.offsetHeight;
+		target.style.transitionProperty = "height, margin, padding";
+		target.style.transitionDuration = duration + 'ms';
+		target.style.height = height + 'px';
+		target.style.removeProperty('padding-top');
+		target.style.removeProperty('padding-bottom');
+		target.style.removeProperty('margin-top');
+		target.style.removeProperty('margin-bottom');
+		window.setTimeout(() => {
+			target.style.removeProperty('height');
+			target.style.removeProperty('overflow');
+			target.style.removeProperty('transition-duration');
+			target.style.removeProperty('transition-property');
+			target.classList.remove('_slide');
+		}, duration);
+	}
+}
+let _slideToggle = (target, duration = 500) => {
+	if (target.hidden) {
+		return _slideDown(target, duration);
+	} else {
+		return _slideUp(target, duration);
+	}
 }; // СПОЙЛЕРЫ
 
-const myPopup = function () {
+/* const myPopup = function () {
 	const openBtns = document.querySelectorAll(".popup-open");
 	const wrappers = document.querySelectorAll(".popup-item");
 	let popupData;
@@ -363,12 +428,11 @@ const myPopup = function () {
 					});
 				}
 				selectPopup(popupData)
-
 			});
 		});
 
 		function closePopup() {
-			const closeBtns = document.querySelectorAll(".popup-item__close");
+			const closeBtns = document.querySelectorAll(".popup-close");
 			const wrapper = document.querySelectorAll(".popup-item");
 
 			closeBtns.forEach(closeBtn => {
@@ -394,7 +458,7 @@ const myPopup = function () {
 		closePopup()
 	}
 }
-myPopup(); // ПОПАПЫ
+myPopup(); // ПОПАПЫ */
 
 //< " СКРИПТЫ " >=============================================================================================================>//
 
@@ -409,86 +473,8 @@ let isMobile = {
 
 if (isMobile.any()) {
 	document.body.classList.add("_touch");
-
-	function menuSpoiler() {
-		const menuSpoilers = document.querySelectorAll(".menu-spoiler");
-
-		if (menuSpoilers.length > 0) {
-			menuSpoilers.forEach(spoiler => {
-				spoiler.addEventListener("click", function (e) {
-					const elementTarget = e.target;
-					e.preventDefault();
-
-					if (elementTarget.closest(".menu__list-link")) {
-						this.classList.toggle("_active");
-						this.nextElementSibling.classList.toggle("_active");
-					}
-				});
-			});
-		}
-	}
-	menuSpoiler()
 } else {
 	document.body.classList.add("_pc");
 }
 
-function actionsHeader() {
-
-	function menuBurger() {
-		const menuWrapper = document.querySelector(".menu__wrapper");
-		const menuBody = document.querySelector(".menu__body");
-		const burgerBtn = document.querySelector(".header__burger");
-
-		if (menuWrapper && menuBody && burgerBtn) {
-
-			burgerBtn.addEventListener("click", function () {
-				menuWrapper.classList.add("_active");
-				menuBody.classList.add("_active");
-			});
-
-			function menuClose() {
-				const menuClose = document.querySelector(".menu__close");
-
-				menuClose.addEventListener("click", function () {
-					menuWrapper.classList.remove("_active");
-					menuBody.classList.remove("_active");
-				});
-
-				document.addEventListener("click", function (e) {
-					const elementTarget = e.target;
-
-					if (elementTarget === menuWrapper) {
-						menuWrapper.classList.remove("_active");
-						menuBody.classList.remove("_active");
-					}
-				});
-			}
-			menuClose()
-
-		}
-	}
-	menuBurger()
-
-}
-actionsHeader()
-
-function userPasswordShow() {
-	const passwordBody = document.querySelectorAll('.popup-field__password');
-
-	passwordBody.forEach(body => {
-		body.addEventListener("click", function (e) {
-			const elementTarget = e.target;
-
-			if (elementTarget.closest(".popup-field__password-show")) {
-				if (elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-input").getAttribute('type') === ('password')) {
-					elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-input").setAttribute('type', 'text');
-					elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-show").classList.add("_active");
-				} else {
-					elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-input").setAttribute('type', 'password');
-					elementTarget.closest(".popup-field__password").querySelector(".popup-field__password-show").classList.remove("_active");
-				}
-			}
-		});
-	});
-}
-userPasswordShow()
+//< " СКРИПТЫ " >=============================================================================================================>//
