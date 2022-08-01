@@ -41,7 +41,7 @@
                            <a class="menu__list-link" href="#">Home</a>
                         </li>
                         <li class="menu__list-item">
-                           <a class="menu__list-link" data-spoller href="#">
+                           <a class="menu__list-link" data-sub-menu data-spoller href="#">
                               Categories
                               <i class="menu__arrow _icon-arrow"></i>
                            </a>
@@ -68,10 +68,12 @@
                </div>
             </nav>
             <div class="header__actions header-actions">
-               <button class="header-actions__btn header-actions__btn_first" data-popup="login" type="button">
+               <button class="header-actions__btn header-actions__btn_first popup-open" data-popup="login-popup"
+                  type="button">
                   Login
                </button>
-               <button class="header-actions__btn header-actions__btn_second btn" data-popup="sign" type="button">
+               <button class="header-actions__btn header-actions__btn_second btn popup-open" data-popup="sign-popup"
+                  type="button">
                   Sign Up
                </button>
             </div>
@@ -80,35 +82,185 @@
    </div>
 </header>
          <main class="page">
-
+            <section class="page__main-block main-block">
+               <div class="main-block__content">
+                  <div class="main-block__container _container">
+                     <div class="main-block__body">
+                        <h1 class="main-block__title _title">
+                           Awesome tools for
+                           Designer & Developer<span class="_orange">.</span>
+                        </h1>
+                        <p class="main-block__text">
+                           Antool is a web collection of information on paid or free Design and Development tools
+                        </p>
+                        <div class="main-block__field field">
+                           <form class="field__form" action="">
+                              <div class="field__item">
+                                 <label class="field__label _icon-search" for="search-input"></label>
+                                 <input class="field__input" id="search-input" type="search" name="q" required>
+                                 <button class="field__btn btn" type="submit">Search</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="main-block__image">
+                  <img src="img/page/main-block/image.png" alt="main-block-image">
+               </div>
+            </section>
          </main>
       </div>
       <footer class="footer">
-   <div class="footer__wrapper">
-      <div class="_container">
-         <div class="footer__body">
-
+   <div class="_container">
+      <div class="footer__body">
+         <div class="footer__main footer-main">
+            <a class="footer-main__logo" href="#">
+               <img src="img/logo-big.svg" alt="footer-logo">
+            </a>
+            <p class="footer-main__copy">
+               Copyright 2021. Antools
+            </p>
+            <p class="footer-main__text">
+               Antool is a web collection of information on paid or free Design and Development tools
+            </p>
          </div>
+         <nav class="footer__navigation footer-navigation" data-spollers="480.2,max" data-one-spoller>
+            <div class="footer-navigation__item">
+               <div class="footer-navigation__title" data-spoller>
+                  Contact Us
+               </div>
+               <div class="footer-navigation__inner">
+                  <ul class="footer-navigation__list">
+                     <li class="footer-navigation__list-item">
+                        <a class="footer-navigation__list-link" href="tel:+621987463">+621987463</a>
+                     </li>
+                     <li class="footer-navigation__list-item">
+                        <a class="footer-navigation__list-link" href="#">M Building, No.10 A</a>
+                     </li>
+                     <li class="footer-navigation__list-item">
+                        <a class="footer-navigation__list-link" href="#">antools@awesome.com</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="footer-navigation__item">
+               <div class="footer-navigation__title" data-spoller>
+                  Categories
+               </div>
+               <div class="footer-navigation__inner">
+                  <ul class="footer-navigation__list">
+                     <li class="footer-navigation__list-item">
+                        <a class="footer-navigation__list-link" href="#">Design</a>
+                     </li>
+                     <li class="footer-navigation__list-item">
+                        <a class="footer-navigation__list-link" href="#">Development</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="footer-navigation__item">
+               <div class="footer-navigation__title" data-spoller>
+                  Company Info
+               </div>
+               <div class="footer-navigation__inner">
+                  <ul class="footer-navigation__list">
+                     <li class="footer-navigation__list-item">
+                        <a class="footer-navigation__list-link" href="#">About Us</a>
+                     </li>
+                     <li class="footer-navigation__list-item">
+                        <a class="footer-navigation__list-link" href="#">Our Partners</a>
+                     </li>
+                     <li class="footer-navigation__list-item">
+                        <a class="footer-navigation__list-link" href="#">Blog</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
       </div>
    </div>
 </footer>
       <div class="popup-wrapper">
-
-</div>
-
-<!-- <div class="popup-wrapper__item popup-item">
-	<div class="popup-item__body">
-		<div class="popup-item__top">
-			<div class="popup-item__title">
-
+	<div class="popup-wrapper__item popup-item login-popup">
+		<div class="popup-item__body">
+			<div class="popup-item__top">
+				<div class="popup-item__title">
+					Login
+				</div>
+				<button class="popup-item__close popup-close close" type="button"></button>
 			</div>
-			<button class="popup-item__close popup-close" type="button"><span></span></button>
-		</div>
-		<div class="popup-item__content">
-			
+			<div class="popup-item__content">
+				<div class="popup-item__field popup-field">
+					<form class="popup-field__form" action="#">
+						<div class="popup-field__item">
+							<input class="popup-field__input" type="email" placeholder="Email" required>
+						</div>
+						<div class="popup-field__password">
+							<div class="popup-field__item">
+								<input class="popup-field__input" type="password" placeholder="Password" minlength="6"
+									maxlength="18" required>
+								<button class="popup-field__password-show" type="button">
+									<img src="img/icon/password.svg" alt="icon-password">
+								</button>
+							</div>
+						</div>
+						<a class="popup-field__link" href="#">
+							Remind password?
+						</a>
+						<button class="popup-field__send btn">
+							Login
+						</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
-</div> -->
+	<div class="popup-wrapper__item popup-item sign-popup">
+		<div class="popup-item__body">
+			<div class="popup-item__top">
+				<div class="popup-item__title">
+					Sign Up
+				</div>
+				<button class="popup-item__close popup-close close" type="button"></button>
+			</div>
+			<div class="popup-item__content">
+				<div class="popup-item__field popup-field">
+					<form class="popup-field__form" action="#">
+						<div class="popup-field__item">
+							<input class="popup-field__input" type="text" placeholder="Name" required>
+						</div>
+						<div class="popup-field__item">
+							<input class="popup-field__input" type="email" placeholder="Email" required>
+						</div>
+						<div class="popup-field__password">
+							<div class="popup-field__item">
+								<input class="popup-field__input" type="password" placeholder="Password" minlength="6"
+									maxlength="18" required>
+								<button class="popup-field__password-show" type="button">
+									<img src="img/icon/password.svg" alt="icon-password">
+								</button>
+							</div>
+							<div class="popup-field__item">
+								<input class="popup-field__input" type="password" placeholder="Password" minlength="6"
+									maxlength="18" required>
+								<button class="popup-field__password-show" type="button">
+									<img src="img/icon/password.svg" alt="icon-password">
+								</button>
+							</div>
+						</div>
+						<a class="popup-field__link" href="#">
+							By clicking the "Sign Up" button you agree to our policy.
+						</a>
+						<button class="popup-field__send btn">
+							Sign Up
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
    </div>
    <script src="js/script.js"></script>
 </body>

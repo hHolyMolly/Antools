@@ -409,7 +409,7 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }; // СПОЙЛЕРЫ
 
-/* const myPopup = function () {
+const myPopup = function () {
 	const openBtns = document.querySelectorAll(".popup-open");
 	const wrappers = document.querySelectorAll(".popup-item");
 	let popupData;
@@ -458,7 +458,7 @@ let _slideToggle = (target, duration = 500) => {
 		closePopup()
 	}
 }
-myPopup(); // ПОПАПЫ */
+myPopup(); // ПОПАПЫ
 
 //< " СКРИПТЫ " >=============================================================================================================>//
 
@@ -474,19 +474,27 @@ let isMobile = {
 if (isMobile.any()) {
 	document.body.classList.add("_touch");
 
-	function removePointer() {
-		const button = document.querySelectorAll("button");
-		const link = document.querySelectorAll("a");
+	function subMenu() {
+		const links = document.querySelectorAll("[data-sub-menu]")
 
-		if (button && link) {
-			button.forEach(item => {
-				item.addEventListener("click", function () {
-					this.style
-				});
+		links.forEach(link => {
+			link.addEventListener("click", function (e) {
+				if (window.innerWidth > 992.2) {
+					e.preventDefault();
+					this.parentElement.classList.toggle("_active");
+				}
 			});
-		}
+
+			document.addEventListener("click", function (e) {
+				const elementTarget = e.target;
+
+				if (!elementTarget.closest(".menu__list-item")) {
+					link.parentElement.classList.remove("_active");
+				}
+			});
+		});
 	}
-	removePointer()
+	subMenu()
 } else {
 	document.body.classList.add("_pc");
 }
@@ -521,6 +529,27 @@ function actionsHeader() {
 		}
 	}
 	menuBurger()
+
+	function showPassword() {
+		const passwordContainer = document.querySelectorAll(".popup-field__password .popup-field__item");
+
+		passwordContainer.forEach(password => {
+			password.addEventListener("click", function (e) {
+				const elementTarget = e.target;
+
+				if (elementTarget.closest(".popup-field__password-show")) {
+					if (elementTarget.closest(".popup-field__password .popup-field__item").querySelector(".popup-field__input").getAttribute("type") === ("password")) {
+						elementTarget.closest(".popup-field__password .popup-field__item").querySelector(".popup-field__input").setAttribute("type", "text");
+						elementTarget.closest(".popup-field__password .popup-field__item").querySelector(".popup-field__password-show").classList.add("_active");
+					} else {
+						elementTarget.closest(".popup-field__password .popup-field__item").querySelector(".popup-field__input").setAttribute("type", "password");
+						elementTarget.closest(".popup-field__password .popup-field__item").querySelector(".popup-field__password-show").classList.remove("_active");
+					}
+				}
+			});
+		});
+	}
+	showPassword()
 
 }
 actionsHeader()
