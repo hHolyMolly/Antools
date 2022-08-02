@@ -553,3 +553,28 @@ function actionsHeader() {
 
 }
 actionsHeader()
+
+//< " СКРИПТЫ " >=============================================================================================================>//
+
+function actionsPage() {
+
+	function product() {
+
+		function addFavorite() {
+			const btns = document.querySelectorAll(".product-favorite");
+
+			if (btns) {
+				btns.forEach(btn => {
+					btn.addEventListener("click", function () {
+						this.classList.toggle("_active");
+					});
+				});
+			}
+		}
+		addFavorite()
+
+	}
+	product()
+
+}
+actionsPage()
