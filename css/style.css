@@ -394,7 +394,9 @@ body.ie ._ibg img {
   width: 100%;
   /* Если меньше контейнера */
   min-height: 50px;
+  overflow: hidden;
   background-color: transparent;
+  text-overflow: ellipsis;
   font-size: 14px;
   font-weight: 400;
   line-height: 150%;
@@ -404,7 +406,7 @@ body.ie ._ibg img {
 }
 @media (max-width: 1250px) {
   .field__input {
-    min-height: calc(40px + 10 * ((100vw - 320px) / 930));
+    min-height: calc(35px + 15 * ((100vw - 320px) / 930));
   }
 }
 .field__input::-moz-placeholder {
@@ -471,7 +473,7 @@ body.ie ._ibg img {
 }
 @media (max-width: 1250px) {
   .field__btn {
-    min-height: calc(40px + 10 * ((100vw - 320px) / 930));
+    min-height: calc(35px + 15 * ((100vw - 320px) / 930));
   }
 }
 
@@ -1504,6 +1506,15 @@ body._lock-scroll {
 .main-block__field {
   width: 100%;
 }
+.main-block__field:not(:last-child) {
+  /* Если меньше контейнера */
+  margin-bottom: 120px;
+}
+@media (max-width: 1250px) {
+  .main-block__field:not(:last-child) {
+    margin-bottom: calc(20px + 100 * ((100vw - 320px) / 930));
+  }
+}
 @media (min-width: 768.2px) {
   .main-block__image {
     flex: 0 0 40%;
@@ -1538,6 +1549,64 @@ body._lock-scroll {
 }
 .main-block__image img {
   max-width: 100%;
+}
+.main-block__icons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-block-icons__item {
+  flex: 0 0 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.main-block-icons__item:not(:last-child) {
+  /* Если меньше контейнера */
+  margin-right: 10px;
+}
+@media (max-width: 1250px) {
+  .main-block-icons__item:not(:last-child) {
+    margin-right: calc(5px + 5 * ((100vw - 320px) / 930));
+  }
+}
+@media (any-hover: hover) {
+  .main-block-icons__item {
+    transition: color 0.3s ease 0s;
+  }
+  .main-block-icons__item:hover {
+    color: rgba(255, 255, 255, 0.5490196078);
+  }
+}
+.main-block-icons__item_01 {
+  /* Если меньше контейнера */
+  font-size: 22px;
+}
+@media (max-width: 1250px) {
+  .main-block-icons__item_01 {
+    font-size: calc(18px + 4 * ((100vw - 320px) / 930));
+  }
+}
+.main-block-icons__item_02 {
+  /* Если меньше контейнера */
+  font-size: 26px;
+}
+@media (max-width: 1250px) {
+  .main-block-icons__item_02 {
+    font-size: calc(22px + 4 * ((100vw - 320px) / 930));
+  }
+}
+.main-block-icons__item_03 {
+  /* Если меньше контейнера */
+  font-size: 20px;
+}
+@media (max-width: 1250px) {
+  .main-block-icons__item_03 {
+    font-size: calc(14px + 6 * ((100vw - 320px) / 930));
+  }
 }
 
 .page {
