@@ -1,149 +1,4 @@
 //< " ПОДКЛЮЧЕНИЕ JS КОМПОНЕНТОВ " >=============================================================================================================>//
-/* function dynamicAdaptive() {
-	function DynamicAdapt(type) {
-		this.type = type;
-	}
-
-	DynamicAdapt.prototype.init = function () {
-		const _this = this;
-		this.оbjects = [];
-		this.daClassname = "_dynamic_adapt_";
-		this.nodes = document.querySelectorAll("[data-da]");
-
-		for (let i = 0; i < this.nodes.length; i++) {
-			const node = this.nodes[i];
-			const data = node.dataset.da.trim();
-			const dataArray = data.split(",");
-			const оbject = {};
-			оbject.element = node;
-			оbject.parent = node.parentNode;
-			оbject.destination = document.querySelector(dataArray[0].trim());
-			оbject.breakpoint = dataArray[1] ? dataArray[1].trim() : "767";
-			оbject.place = dataArray[2] ? dataArray[2].trim() : "last";
-			оbject.index = this.indexInParent(оbject.parent, оbject.element);
-			this.оbjects.push(оbject);
-		}
-
-		this.arraySort(this.оbjects);
-
-		this.mediaQueries = Array.prototype.map.call(this.оbjects, function (item) {
-			return '(' + this.type + "-width: " + item.breakpoint + "px)," + item.breakpoint;
-		}, this);
-		this.mediaQueries = Array.prototype.filter.call(this.mediaQueries, function (item, index, self) {
-			return Array.prototype.indexOf.call(self, item) === index;
-		});
-
-		for (let i = 0; i < this.mediaQueries.length; i++) {
-			const media = this.mediaQueries[i];
-			const mediaSplit = String.prototype.split.call(media, ',');
-			const matchMedia = window.matchMedia(mediaSplit[0]);
-			const mediaBreakpoint = mediaSplit[1];
-
-			const оbjectsFilter = Array.prototype.filter.call(this.оbjects, function (item) {
-				return item.breakpoint === mediaBreakpoint;
-			});
-			matchMedia.addListener(function () {
-				_this.mediaHandler(matchMedia, оbjectsFilter);
-			});
-			this.mediaHandler(matchMedia, оbjectsFilter);
-		}
-	};
-
-	DynamicAdapt.prototype.mediaHandler = function (matchMedia, оbjects) {
-		if (matchMedia.matches) {
-			for (let i = 0; i < оbjects.length; i++) {
-				const оbject = оbjects[i];
-				оbject.index = this.indexInParent(оbject.parent, оbject.element);
-				this.moveTo(оbject.place, оbject.element, оbject.destination);
-			}
-		} else {
-			for (let i = 0; i < оbjects.length; i++) {
-				const оbject = оbjects[i];
-				if (оbject.element.classList.contains(this.daClassname)) {
-					this.moveBack(оbject.parent, оbject.element, оbject.index);
-				}
-			}
-		}
-	};
-
-	DynamicAdapt.prototype.moveTo = function (place, element, destination) {
-		element.classList.add(this.daClassname);
-		if (place === 'last' || place >= destination.children.length) {
-			destination.insertAdjacentElement('beforeend', element);
-			return;
-		}
-		if (place === 'first') {
-			destination.insertAdjacentElement('afterbegin', element);
-			return;
-		}
-		destination.children[place].insertAdjacentElement('beforebegin', element);
-	}
-
-	DynamicAdapt.prototype.moveBack = function (parent, element, index) {
-		element.classList.remove(this.daClassname);
-		if (parent.children[index] !== undefined) {
-			parent.children[index].insertAdjacentElement('beforebegin', element);
-		} else {
-			parent.insertAdjacentElement('beforeend', element);
-		}
-	}
-
-	DynamicAdapt.prototype.indexInParent = function (parent, element) {
-		const array = Array.prototype.slice.call(parent.children);
-		return Array.prototype.indexOf.call(array, element);
-	};
-
-	DynamicAdapt.prototype.arraySort = function (arr) {
-		if (this.type === "min") {
-			Array.prototype.sort.call(arr, function (a, b) {
-				if (a.breakpoint === b.breakpoint) {
-					if (a.place === b.place) {
-						return 0;
-					}
-
-					if (a.place === "first" || b.place === "last") {
-						return -1;
-					}
-
-					if (a.place === "last" || b.place === "first") {
-						return 1;
-					}
-
-					return a.place - b.place;
-				}
-
-				return a.breakpoint - b.breakpoint;
-			});
-		} else {
-			Array.prototype.sort.call(arr, function (a, b) {
-				if (a.breakpoint === b.breakpoint) {
-					if (a.place === b.place) {
-						return 0;
-					}
-
-					if (a.place === "first" || b.place === "last") {
-						return 1;
-					}
-
-					if (a.place === "last" || b.place === "first") {
-						return -1;
-					}
-
-					return b.place - a.place;
-				}
-
-				return b.breakpoint - a.breakpoint;
-			});
-			return;
-		}
-	};
-
-	const da = new DynamicAdapt("max");
-	da.init();
-
-}
-dynamicAdaptive(); // ДИНАМИЧЕСКИЙ АДАПТИВ */
-
 function scrollHeader() {
 	const header = document.querySelector('.header');
 
@@ -160,20 +15,26 @@ function scrollHeader() {
 }
 scrollHeader(); // ДОБАВЛЕНИЕ ХЕДЕРУ КЛАСС ПРИ СКРОЛЛЕ
 
-/* new Swiper(".swiper", {
+new Swiper(".manager-slider", {
 	slidesPerView: 1,
-	spaceBetween: 15,
+	spaceBetween: 60,
 	grabCursor: true,
 	loop: true,
-	speed: 800,
+	speed: 1200,
+	autoHeight: true,
 
 	autoplay: {
 		delay: 3500,
 	},
 
 	navigation: {
-		nextEl: ".swiper-button-next",
-		prevEl: ".swiper-button-prev",
+		nextEl: ".manager-slider__arrow_next",
+		prevEl: ".manager-slider__arrow_prev",
+	},
+
+	pagination: {
+		el: ".manager-slider__pagination",
+		clickable: true,
 	},
 
 	breakpoints: {
@@ -181,53 +42,7 @@ scrollHeader(); // ДОБАВЛЕНИЕ ХЕДЕРУ КЛАСС ПРИ СКРО�
 	}
 });
 
-; // НАСТРОЙКИ СЛАЙДЕРА */
-
-/* function quantity() {
-
-	let minValue = 1; // Минимальное значение
-	let maxValue = 99; // Максимальное значение
-
-	const counters = document.querySelectorAll('[data-quantity]');
-
-	if (counters.length > 0) {
-		counters.forEach(counter => {
-
-			counter.addEventListener("click", function (e) {
-				const elementTarget = e.target;
-
-				if (elementTarget.closest('.counter__btn')) {
-
-					let value = parseInt(elementTarget.closest(".counter").querySelector('.counter__input').value);
-
-					if (elementTarget.classList.contains("counter__btn_plus")) {
-						value++;
-					} else {
-						--value;
-					}
-
-					if (value <= minValue) {
-						value = minValue;
-						elementTarget.closest(".counter").querySelector(".counter__btn_minus").classList.add("_disabled");
-					} else {
-						elementTarget.closest(".counter").querySelector(".counter__btn_minus").classList.remove("_disabled");
-					}
-
-					if (value >= maxValue) {
-						value = maxValue;
-						elementTarget.closest(".counter").querySelector(".counter__btn_plus").classList.add("_disabled");
-					} else {
-						elementTarget.closest(".counter").querySelector(".counter__btn_plus").classList.remove("_disabled");
-					}
-
-					elementTarget.closest(".counter").querySelector(".counter__input").value = value;
-				}
-			});
-		});
-	}
-
-};
-quantity(); // СЧЁТЧИКИ */
+; // НАСТРОЙКИ СЛАЙДЕРА
 
 const spollersArray = document.querySelectorAll('[data-spollers]');
 
@@ -462,6 +277,11 @@ myPopup(); // ПОПАПЫ
 
 //< " СКРИПТЫ " >=============================================================================================================>//
 
+new WOW({
+	mobile: false,
+	offset: 200,
+}).init();
+
 let isMobile = {
 	Android: function () { return navigator.userAgent.match(/Android/i); },
 	BlackBerry: function () { return navigator.userAgent.match(/BlackBerry/i); },
@@ -561,20 +381,100 @@ function actionsPage() {
 	function product() {
 
 		function addFavorite() {
-			const btns = document.querySelectorAll(".product-favorite");
+			document.addEventListener("click", function (e) {
+				const elementTarget = e.target;
 
-			if (btns) {
-				btns.forEach(btn => {
-					btn.addEventListener("click", function () {
-						this.classList.toggle("_active");
-					});
+				if (elementTarget.closest(".product-favorite")) {
+					elementTarget.classList.toggle("_active");
+				}
+
+			})
+		}
+		addFavorite()
+
+		function showProduct() {
+			const btn = document.querySelector(".popular__show-more");
+
+			if (btn) {
+				btn.addEventListener("click", function () {
+					async function getProducts() {
+						if (!btn.classList.contains('_active')) {
+
+							btn.classList.add('_active');
+							const file = "./json/products.json";
+
+							let response = await fetch(file, {
+								method: "GET"
+							});
+
+							if (response.ok) {
+								let result = await response.json();
+								loadProducts(result);
+								btn.classList.remove('_active');
+								btn.remove();
+							}
+						}
+					}
+					getProducts()
 				});
 			}
 		}
-		addFavorite()
+		showProduct()
 
 	}
 	product()
 
 }
 actionsPage()
+
+//< " СКРИПТЫ " >=============================================================================================================>//
+
+function loadProducts(data) {
+
+	const productsItems = document.querySelector('.popular__column');
+
+	data.products.forEach(item => {
+		const productId = item.id;
+		const productImage = item.image;
+		const productTitle = item.title;
+		const productSubTitle = item.subtitle;
+		const productText = item.text;
+		const productFolder = item.folder;
+		const productButton = item.button;
+		const animationDelay = item.animationDelay;
+
+		let template = `
+			<article class="product-column__card wow animate__animated animate__fadeIn" data-wow-delay="${animationDelay}" data-wow-duration="2s" data-pid="${productId}">
+			<div class="product-column__header product-column-header">
+				<div class="product-column-header__image">
+					<img src="img/page/popular/${productImage}" alt="popular-${productId}">
+				</div>
+				<div class="product-column-header__text-block">
+					<h3 class="product-column-header__title">
+						${productTitle}
+					</h3>
+					<p class="product-column-header__sub-title">
+						${productSubTitle}
+					</p>
+				</div>
+			</div>
+			<p class="product-column__text">
+				${productText}
+			</p>
+			<div class="product-column__actions product-column-actions">
+				<div class="product-column-actions__items">
+					<button
+						class="product-column-actions__favorite product-column-actions__item product-favorite _icon-favorites"></button>
+					<a class="product-column-actions__folder product-column-actions__item _icon-folder"
+						href="${productFolder}"></a>
+				</div>
+				<a class="product-column-actions__btn btn" href="${productButton}">
+					Visit
+				</a>
+			</div>
+		</article>
+		`
+
+		productsItems.insertAdjacentHTML("beforeEnd", template);
+	});
+}
