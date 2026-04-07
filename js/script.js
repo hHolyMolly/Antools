@@ -96,7 +96,7 @@ if (spollersArray.length > 0) {
 				}
 			});
 			// Событие
-			matchMedia.addListener(function () {
+			matchMedia.addEventListener('change', function () {
 				initSpollers(spollersArray, matchMedia);
 			});
 			initSpollers(spollersArray, matchMedia);
